@@ -17,29 +17,35 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin Dulce Gusto',
-            'email' => 'admin@dulcegusto.pe',
-            'phone' => '999000001',
-            'role' => 'admin',
-            'password' => Hash::make('admin123'),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@dulcegusto.pe'],
+            [
+                'name' => 'Admin Dulce Gusto',
+                'phone' => '999000001',
+                'role' => 'admin',
+                'password' => Hash::make('admin123'),
+            ]
+        );
 
-        User::create([
-            'name' => 'Carlos Repartidor',
-            'email' => 'carlos@dulcegusto.pe',
-            'phone' => '999000002',
-            'role' => 'delivery',
-            'password' => Hash::make('delivery123'),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'carlos@dulcegusto.pe'],
+            [
+                'name' => 'Carlos Repartidor',
+                'phone' => '999000002',
+                'role' => 'delivery',
+                'password' => Hash::make('delivery123'),
+            ]
+        );
 
-        User::create([
-            'name' => 'Pedro Repartidor',
-            'email' => 'pedro@dulcegusto.pe',
-            'phone' => '999000003',
-            'role' => 'delivery',
-            'password' => Hash::make('delivery123'),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'pedro@dulcegusto.pe'],
+            [
+                'name' => 'Pedro Repartidor',
+                'phone' => '999000003',
+                'role' => 'delivery',
+                'password' => Hash::make('delivery123'),
+            ]
+        );
 
         $categories = [
             ['name' => 'Tortas', 'slug' => 'tortas', 'sort_order' => 1],
@@ -50,7 +56,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($categories as $cat) {
-            Category::create($cat);
+            Category::firstOrCreate(['slug' => $cat['slug']], $cat);
         }
 
         $products = [
@@ -65,17 +71,29 @@ class DatabaseSeeder extends Seeder
             ['category_id' => 4, 'name' => 'Cheesecake Fresa', 'description' => 'Cremoso cheesecake con coulis de fresa.', 'price' => 45.00, 'stock' => 5, 'is_featured' => true, 'rating' => 4.9, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600&h=600&fit=crop&q=80'],
             ['category_id' => 4, 'name' => 'Cheesecake Mango', 'description' => 'Cheesecake tropical de mango.', 'price' => 45.00, 'stock' => 4, 'rating' => 4.7, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1565299543923-37dd37887442?w=600&h=600&fit=crop&q=80'],
             ['category_id' => 5, 'name' => 'Alfajores x12', 'description' => 'Alfajores de maizena rellenos de manjar.', 'price' => 32.00, 'stock' => 25, 'rating' => 4.6, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1621236378699-8597faf6a176?w=600&h=600&fit=crop&q=80'],
+            ['category_id' => 1, 'name' => 'Torta de Pecanas', 'description' => 'Bizcocho a base de pecanas, relleno y bañado con manjar blanco.', 'price' => 70.00, 'stock' => 5, 'is_featured' => true, 'rating' => 4.9, 'sizes' => ['6 porciones', '12 porciones', '20 porciones'], 'image' => 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&h=600&fit=crop'],
+            ['category_id' => 1, 'name' => 'Carrot Cake', 'description' => 'Torta de zanahoria con especias y frosting de queso crema.', 'price' => 65.00, 'stock' => 6, 'rating' => 4.8, 'sizes' => ['6 porciones', '12 porciones'], 'image' => 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=600&h=600&fit=crop'],
+            ['category_id' => 2, 'name' => 'Cupcakes Red Velvet', 'description' => 'Caja de 6 cupcakes red velvet con queso crema.', 'price' => 30.00, 'stock' => 15, 'rating' => 4.9, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=600&h=600&fit=crop'],
+            ['category_id' => 2, 'name' => 'Cupcakes de Chocolate', 'description' => 'Caja de 6 cupcakes full chocolate.', 'price' => 28.00, 'stock' => 12, 'rating' => 4.7, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1599785209707-a456fc1337cb?w=600&h=600&fit=crop'],
+            ['category_id' => 3, 'name' => 'Caja Macarons x6', 'description' => 'Perfecto para un regalo especial.', 'price' => 22.00, 'stock' => 20, 'rating' => 4.6, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&h=600&fit=crop'],
+            ['category_id' => 3, 'name' => 'Macarons Premium', 'description' => 'Caja de 15 macarons con sabores exóticos.', 'price' => 55.00, 'stock' => 10, 'rating' => 4.9, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1612201142855-7873bc1661b4?w=600&h=600&fit=crop'],
+            ['category_id' => 4, 'name' => 'Cheesecake Maracuyá', 'description' => 'Cheesecake con salsa ácida y dulce de maracuyá.', 'price' => 48.00, 'stock' => 6, 'rating' => 4.8, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1596538356170-c3d319fffd45?w=600&h=600&fit=crop'],
+            ['category_id' => 4, 'name' => 'Cheesecake Arándanos', 'description' => 'Cheesecake clásico con mermelada de arándanos casera.', 'price' => 50.00, 'stock' => 5, 'rating' => 4.9, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1565314050516-72cb612dbfcc?w=600&h=600&fit=crop'],
+            ['category_id' => 5, 'name' => 'Alfajores de Chocolate', 'description' => 'Alfajores bañados en chocolate bitter.', 'price' => 38.00, 'stock' => 15, 'rating' => 4.8, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1621236378699-8597faf6a176?w=600&h=600&fit=crop'],
+            ['category_id' => 5, 'name' => 'Alfajores Mini x24', 'description' => 'Cajita de alfajores mini para picar.', 'price' => 25.00, 'stock' => 30, 'rating' => 4.7, 'sizes' => null, 'image' => 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&h=600&fit=crop'],
         ];
 
         foreach ($products as $prod) {
-            Product::create([
-                ...$prod,
-                'slug' => Str::slug($prod['name']) . '-' . Str::random(4),
-                'sku' => 'DG-' . strtoupper(Str::random(6)),
-                'is_active' => true,
-                'is_featured' => $prod['is_featured'] ?? false,
-                'reviews_count' => rand(10, 50),
-            ]);
+            Product::updateOrCreate(
+                ['name' => $prod['name']],
+                array_merge($prod, [
+                    'slug' => Str::slug($prod['name']) . '-' . Str::random(4),
+                    'sku' => 'DG-' . strtoupper(Str::random(6)),
+                    'is_active' => true,
+                    'is_featured' => $prod['is_featured'] ?? false,
+                    'reviews_count' => rand(10, 50),
+                ])
+            );
         }
 
         $zones = [
@@ -97,7 +115,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($zones as $zone) {
-            DeliveryZone::create($zone);
+            DeliveryZone::firstOrCreate(['district' => $zone['district']], $zone);
         }
 
         // Sample orders

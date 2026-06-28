@@ -43,7 +43,7 @@ class DeliveryController extends Controller
     public function updateStatus(Request $request, Delivery $delivery)
     {
         $request->validate([
-            'status' => 'required|in:pending,assigned,picked_up,on_way,delivered,failed',
+            'status' => 'required|in:pending,assigned,accepted,picked_up,on_way,delivered,failed',
         ]);
 
         $timestamps = [];
