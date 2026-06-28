@@ -67,37 +67,43 @@ export default function HomePage() {
     <div>
 
       {/* ── Hero ── */}
-      <section className="relative bg-gradient-to-br from-brand-950 via-gray-950 to-gray-900 overflow-hidden">
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: 'radial-gradient(circle at 20% 50%, #a855f7 0%, transparent 55%), radial-gradient(circle at 80% 20%, #f43f5e 0%, transparent 50%), radial-gradient(circle at 60% 80%, #7c3aed 0%, transparent 40%)'
-        }} />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-12">
-          <div className="flex-1 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-brand-500/20 text-brand-300 text-xs font-medium px-3 py-1.5 rounded-full mb-6 border border-brand-500/30">
-              <Star size={12} className="fill-brand-400 text-brand-400" />
+      <section className="relative bg-[#fdf2e2] overflow-hidden">
+        <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]" />
+        
+        {/* Background Image on the right side */}
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[65%] pointer-events-none">
+          <img 
+            src="/hero-light.jpg" 
+            onError={(e) => { e.target.onerror = null; e.target.src = heroImg }}
+            alt="Fondo de pastelería" 
+            className="absolute inset-0 w-full h-full object-cover object-left" 
+          />
+          {/* Subtle gradient only on the edges to fade into the background */}
+          <div className="hidden lg:block absolute inset-y-0 left-0 w-64 bg-gradient-to-r from-[#fdf2e2] via-[#fdf2e2]/90 to-transparent" />
+          <div className="hidden lg:block absolute inset-y-0 left-0 w-32 bg-[#fdf2e2]" style={{ filter: 'blur(10px)', transform: 'translateX(-50%)' }} />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-24 lg:py-36 flex items-center">
+          <div className="w-full lg:w-1/2 text-center lg:text-left z-10 relative">
+            <div className="inline-flex items-center gap-2 bg-[#f6eaff] text-[#9333ea] text-sm font-semibold px-5 py-2 rounded-full mb-6 shadow-sm">
+              <Star size={16} className="fill-[#9333ea] text-[#9333ea]" />
               +500 clientes satisfechos en Lima
             </div>
-            <h1 className="text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-              Pasteles que cuentan{' '}
-              <span className="text-gradient">historias</span>
+            <h1 className="text-5xl lg:text-7xl font-extrabold text-gray-900 leading-[1.1] mb-6 tracking-tight drop-shadow-sm">
+              Pasteles que <br className="hidden lg:block" /> cuentan{' '}
+              <span className="text-[#a67c00]">historias</span>
             </h1>
-            <p className="text-gray-400 text-lg mb-8 max-w-lg mx-auto lg:mx-0">
+            <p className="text-gray-800 text-lg mb-8 max-w-lg mx-auto lg:mx-0 font-medium drop-shadow-sm">
               Tortas artesanales, cupcakes y macarons elaborados con ingredientes premium.
               Delivery en todo Lima el mismo día.
             </p>
-            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <Link to="/catalogo" className="btn-primary btn-lg">
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <Link to="/catalogo" className="btn-primary btn-lg px-8 shadow-lg shadow-brand-500/30">
                 Ver catálogo <ChevronRight size={18} />
               </Link>
-              <Link to="/nosotros" className="btn-secondary btn-lg bg-white/10 border-white/20 text-white hover:bg-white/20">
+              <Link to="/nosotros" className="btn-lg border-2 border-gray-900 text-gray-900 bg-transparent hover:bg-gray-900 hover:text-white transition-colors rounded-xl font-bold px-8">
                 Nuestra historia
               </Link>
-            </div>
-          </div>
-          <div className="hidden lg:flex flex-1 justify-center">
-            <div className="relative w-96 h-96">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-500/30 to-rose-500/30 rounded-full blur-3xl" />
-              <img src={heroImg} alt="Torta artesanal" className="relative w-full h-full object-contain drop-shadow-2xl" />
             </div>
           </div>
         </div>
@@ -129,30 +135,30 @@ export default function HomePage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="section-title">Categorías</h2>
-              <p className="section-sub">Explora nuestra variedad artesanal</p>
+              <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Categorías</h2>
+              <p className="text-gray-500 mt-1">Explora nuestra variedad artesanal</p>
             </div>
-            <Link to="/catalogo" className="btn-ghost text-brand-600 hover:bg-brand-50 hidden sm:flex text-sm">
+            <Link to="/catalogo" className="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1 transition-colors">
               Ver todo <ChevronRight size={15} />
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
             {cats.map((cat) => {
-              const Icon     = CATEGORY_ICONS[cat.slug]     || Cake
-              const gradient = CATEGORY_GRADIENTS[cat.slug] || 'from-brand-400 to-brand-600'
+              const Icon = CATEGORY_ICONS[cat.slug] || Cake
               return (
                 <Link
                   key={cat.id}
                   to={`/catalogo?category=${cat.slug}`}
-                  className="group relative overflow-hidden rounded-2xl aspect-[4/3] flex flex-col items-center justify-center gap-2 p-4 text-white shadow-card hover:shadow-card-hover transition-all"
+                  className="group relative overflow-hidden bg-white border border-[#f0e4d8] rounded-2xl aspect-[4/3] flex flex-col items-center justify-center gap-3 p-4 shadow-sm hover:shadow-xl hover:border-brand-200 hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-90 group-hover:opacity-100 transition-opacity`} />
-                  <div className="relative z-10 flex flex-col items-center gap-2">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
-                      <Icon size={24} className="text-white" />
+                  <div className="relative z-10 flex flex-col items-center gap-3">
+                    <div className="w-14 h-14 bg-[#fdf2e2] rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-50 transition-all duration-300">
+                      <Icon size={28} className="text-[#a67c00] group-hover:text-brand-600 transition-colors duration-300" />
                     </div>
-                    <span className="font-bold text-sm text-center">{cat.name}</span>
-                    <span className="text-xs text-white/70">{cat.products_count} productos</span>
+                    <div className="text-center">
+                      <h3 className="font-bold text-gray-900 text-lg group-hover:text-brand-700 transition-colors">{cat.name}</h3>
+                      <p className="text-gray-500 text-xs mt-0.5">{cat.products_count} productos</p>
+                    </div>
                   </div>
                 </Link>
               )
@@ -224,18 +230,20 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA Banner ── */}
-      <section className="relative bg-gradient-to-r from-brand-600 to-rose-500 py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: 'radial-gradient(circle at 20% 50%, white 0%, transparent 50%), radial-gradient(circle at 80% 50%, white 0%, transparent 50%)'
-        }} />
+      <section className="relative bg-[#fdf2e2] border-y border-[#f0e4d8] py-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
-          <Heart size={40} className="text-white/80 mx-auto mb-4" />
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">¿Tienes una ocasión especial?</h2>
-          <p className="text-white/80 mb-8 text-lg">
-            Personalizamos tu torta con el mensaje y decoración que desees.<br />
+          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-[#f0e4d8]">
+            <Heart size={28} className="text-[#a67c00]" />
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight drop-shadow-sm">
+            ¿Tienes una <span className="text-[#a67c00]">ocasión especial</span>?
+          </h2>
+          <p className="text-gray-800 mb-8 text-lg max-w-xl mx-auto font-medium">
+            Personalizamos tu torta con el mensaje y decoración que desees.<br className="hidden sm:block" />
             Bodas, cumpleaños, graduaciones y más.
           </p>
-          <Link to="/catalogo" className="btn-secondary btn-lg bg-white text-brand-700 hover:bg-brand-50 border-0">
+          <Link to="/catalogo" className="btn-primary btn-lg px-8 shadow-lg shadow-brand-500/30">
             Personalizar mi pedido
           </Link>
         </div>

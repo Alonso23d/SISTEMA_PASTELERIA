@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Heart, Award, Truck, Users } from 'lucide-react'
+import { Heart, Award, Truck, Users, Store } from 'lucide-react'
 
 export default function AboutPage() {
   const stats = [
@@ -14,7 +14,11 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-brand-50 to-rose-50 py-20 px-4 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="text-6xl mb-4">🎂</div>
+          <div className="flex justify-center mb-6">
+            <div className="w-20 h-20 bg-white rounded-3xl rotate-3 flex items-center justify-center shadow-sm border border-brand-100">
+              <Store size={40} className="text-brand-600 -rotate-3" />
+            </div>
+          </div>
           <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Nuestra historia</h1>
           <p className="text-gray-600 text-lg leading-relaxed">
             Dulce Gusto nació de la pasión por crear momentos especiales a través de la pastelería artesanal.
@@ -59,8 +63,12 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-        <div className="bg-gradient-to-br from-brand-100 to-rose-100 rounded-3xl aspect-square flex items-center justify-center text-[100px]">
-          🧁
+        <div className="rounded-3xl aspect-square overflow-hidden shadow-md">
+          <img 
+            src="/torta-about.jpg" 
+            alt="Nuestra deliciosa torta" 
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+          />
         </div>
       </section>
 

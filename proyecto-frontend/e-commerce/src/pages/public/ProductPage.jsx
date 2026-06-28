@@ -46,7 +46,6 @@ export default function ProductPage() {
   const handleAdd = () => {
     addItem(product, qty, size, customization)
     toast.success('Agregado al carrito')
-    navigate('/carrito')
   }
 
   const total = (product.price * qty).toFixed(2)
@@ -138,7 +137,7 @@ export default function ProductPage() {
               value={customization}
               onChange={(e) => setCustomization(e.target.value)}
               className="input"
-              placeholder='Ej: "Feliz cumpleaños Ana ❤️"'
+              placeholder='Ej: "Feliz cumpleaños Ana"'
               maxLength={100}
             />
           </div>
