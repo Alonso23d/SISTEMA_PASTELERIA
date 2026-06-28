@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->foreignId('driver_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->enum('status', ['pending','assigned','picked_up','on_way','delivered','failed'])->default('pending');
+            $table->enum('status', ['pending','assigned','accepted','picked_up','on_way','delivered','failed'])->default('pending');
             $table->string('driver_name')->nullable();
             $table->string('driver_phone')->nullable();
             $table->timestamp('assigned_at')->nullable();

@@ -17,7 +17,7 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{category}', [CategoryController::class, 'show']);
 
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{product}', [ProductController::class, 'show']);
+Route::get('/products/{product:slug}', [ProductController::class, 'show']);
 
 Route::get('/delivery/zones', [DeliveryController::class, 'zones']);
 
@@ -64,5 +64,13 @@ Route::middleware('auth:sanctum')->group(function () {
         // Customers admin
         Route::get('/admin/customers', [CustomerController::class, 'index']);
         Route::get('/admin/customers/{email}/orders', [CustomerController::class, 'orders']);
+    });
+
+    // Driver routes
+    Route::middleware('driver')->group(function () {
+        Route::get('/driver/deliveries', [\App\Http\Controllers\Api\DriverController::class, 'index']);
+        Route::get('/driver/deliveries/pending', [\App\Http\Controllers\Api\DriverController::class, 'pendingDeliveries']);
+        Route::post('/driver/deliveries/{delivery}/accept', [\App\Http\Controllers\Api\DriverController::class, 'acceptDelivery']);
+        Route::patch('/driver/deliveries/{delivery}/status', [\App\Http\Controllers\Api\DriverController::class, 'updateStatus']);
     });
 });
