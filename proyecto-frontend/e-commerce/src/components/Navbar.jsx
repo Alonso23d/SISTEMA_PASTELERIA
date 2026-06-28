@@ -60,7 +60,7 @@ function SearchBox({ mobile = false, onClose }) {
   }
 
   return (
-    <div className={`relative ${mobile ? 'w-full' : 'flex-1 max-w-xs'}`}>
+    <div className={`relative ${mobile ? 'w-full' : 'flex-1 max-w-md'}`}>
       <form onSubmit={handleSubmit}>
         <div className="relative">
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
@@ -72,7 +72,7 @@ function SearchBox({ mobile = false, onClose }) {
             onBlur={() => setTimeout(() => setFocused(false), 150)}
             onKeyDown={(e) => e.key === 'Escape' && close()}
             placeholder="Buscar tortas, cupcakes..."
-            className="w-full pl-9 pr-8 py-2 text-sm bg-gray-100 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all"
+            className="w-full pl-10 pr-8 py-2.5 text-base bg-gray-100 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all"
           />
           {query && (
             <button
@@ -186,14 +186,14 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-4">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center gap-4">
 
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-8 h-8 bg-gradient-to-br from-brand-500 to-rose-500 rounded-lg flex items-center justify-center">
-            <CakeSlice size={16} className="text-white" />
+          <div className="w-10 h-10 bg-gradient-to-br from-brand-500 to-rose-500 rounded-lg flex items-center justify-center">
+            <CakeSlice size={20} className="text-white" />
           </div>
-          <span className="font-bold text-gray-900 text-lg">Dulce Gusto</span>
+          <span className="font-bold text-gray-900 text-xl">Dulce Gusto</span>
         </Link>
 
         {/* Desktop nav links */}
@@ -204,7 +204,7 @@ export default function Navbar() {
               to={to}
               end={end}
               className={({ isActive }) =>
-                `px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
+                `px-4 py-2.5 rounded-lg text-base font-medium transition-all ${
                   isActive ? 'bg-brand-50 text-brand-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                 }`
               }
@@ -215,27 +215,27 @@ export default function Navbar() {
         </div>
 
         {/* Desktop search */}
-        <div className="hidden md:flex flex-1 max-w-sm ml-auto">
+        <div className="hidden md:flex flex-1 max-w-md ml-auto">
           <SearchBox />
         </div>
 
         {/* Auth */}
         {user ? (
           <div className="hidden md:flex items-center gap-2 shrink-0">
-            <span className="text-sm text-gray-600 font-medium flex items-center gap-1.5">
-              <User size={15} className="text-brand-600" />
+            <span className="text-base text-gray-600 font-medium flex items-center gap-1.5">
+              <User size={18} className="text-brand-600" />
               {user.name.split(' ')[0]}
             </span>
-            <button onClick={handleLogout} className="p-2 rounded-xl hover:bg-gray-100 transition-colors text-gray-500">
-              <LogOut size={18} />
+            <button onClick={handleLogout} className="p-2.5 rounded-xl hover:bg-gray-100 transition-colors text-gray-500">
+              <LogOut size={20} />
             </button>
           </div>
         ) : (
           <div className="hidden md:flex items-center gap-2 shrink-0">
-            <Link to="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-1.5">
-              <LogIn size={15} /> Ingresar
+            <Link to="/login" className="text-base font-medium text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-1.5">
+              <LogIn size={18} /> Ingresar
             </Link>
-            <Link to="/registro" className="btn-primary btn-sm">Registrarse</Link>
+            <Link to="/registro" className="btn-primary px-5 py-2.5 rounded-xl text-base font-semibold">Registrarse</Link>
           </div>
         )}
 
