@@ -11,7 +11,12 @@ Route::get('/migrar-bd-secreta', function () {
     Artisan::call('migrate', ['--force' => true]);
     return "¡Las tablas se han creado exitosamente en Clever Cloud!";
 });
+
 Route::get('/llenar-bd-secreta', function () {
-    Artisan::call('db:seed', ['--force' => true]);
-    return "¡Los pasteles y datos de prueba se han inyectado exitosamente en Clever Cloud!";
+    try {
+        Artisan::call('db:seed', ['--force' => true]);
+        return "Éxito. Resultado de la consola: <br><pre>" . Artisan::output() . "</pre>";
+    } catch (\Exception $e) {
+        return "Error al sembrar los datos: " . $e->getMessage();
+    }
 });
