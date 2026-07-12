@@ -4,7 +4,8 @@ import { CheckCircle2, Clock, MapPin, Phone, Package, Truck, Navigation, AlertCi
 import toast from 'react-hot-toast'
 import api from '../../lib/api'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+// Cambiamos el localhost de respaldo por tu URL real de Render
+const API_URL = import.meta.env.VITE_API_URL || 'https://dulce-gusto-backend.onrender.com/api'
 
 export default function DriverDashboardPage() {
   const queryClient = useQueryClient()

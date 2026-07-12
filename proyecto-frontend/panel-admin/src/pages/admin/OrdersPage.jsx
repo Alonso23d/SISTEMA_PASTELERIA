@@ -203,12 +203,14 @@ export default function OrdersPage() {
                 <h3 className={`text-xs font-semibold ${sub} uppercase mb-2`}>Comprobante de pago</h3>
                 {selected.voucher_path ? (
                   <a
-                    href={`http://localhost:8000/storage/${selected.voucher_path}`}
+                    // URL de Render actualizada aquí
+                    href={`https://dulce-gusto-backend.onrender.com/storage/${selected.voucher_path}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <img
-                      src={`http://localhost:8000/storage/${selected.voucher_path}`}
+                      // URL de Render actualizada aquí
+                      src={`https://dulce-gusto-backend.onrender.com/storage/${selected.voucher_path}`}
                       alt="Voucher"
                       className="w-full max-h-64 object-contain rounded-xl border border-green-300 cursor-zoom-in hover:opacity-90 transition-opacity"
                     />
